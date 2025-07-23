@@ -1,0 +1,32 @@
+name: Convert AI Rules
+
+on:
+  push:
+    paths:
+      - 'sing-box-ai-rules.json'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Run converter script
+        run: python convert.py
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Auto-convert to multi-platform formats" || echo "No changes to commit"
+          git push
