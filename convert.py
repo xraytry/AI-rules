@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-INPUT_FILE = "singbox_ai_rules.json"
+INPUT_FILE = "sing-box-ai-rules.json"
 OUT_DIR = Path("output")
 OUT_DIR.mkdir(exist_ok=True)
 
